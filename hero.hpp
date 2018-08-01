@@ -15,8 +15,8 @@ public:
 	void run();
 	long Damage();
 	unsigned long Heal();
-	unsigned long magic();
-	void attack(Enemy enemy);
+	void attack(Enemy& enemy);
+	void magicAttack(Enemy& enemy);
 	void takeDamage(unsigned long x);
 	void hpCheck();
 

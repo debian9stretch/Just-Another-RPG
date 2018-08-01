@@ -1,5 +1,2 @@
-#pragma once
-class Battle{
-public:
-	int battle();
-};
+#pragma once 
+int battle();

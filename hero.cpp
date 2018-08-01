@@ -42,15 +42,14 @@ unsigned long Player::Heal(){
 	return heal;
 }
 
-void Player::attack(Enemy enemy){
+void Player::attack(Enemy& enemy){
 	damage = ((playerATK*2)+(rand()%(playerLv*10)-1))+1;
-	enemy.takeDamage(Damage());
+	enemy.takeDamage(damage);
 }
 
-unsigned long Player::magic(){
+void Player::magicAttack(Enemy& enemy){
 	magicDMG = ((pow((playerLv/1.3),1.9)+rand()%(playerLv*10)-1)+(playerMana))/2;
 	enemy.takeDamage(magicDMG);	
-	return magicDMG;
 }
 
 void Player::hpCheck(){

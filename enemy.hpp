@@ -13,7 +13,7 @@ public:
 		//battle functions
 
 	unsigned long Damage();
-	void attack(Player player);
+	void attack(Player& player);
 	void takeDamage(unsigned long x);
 
 	//	mutators/setters

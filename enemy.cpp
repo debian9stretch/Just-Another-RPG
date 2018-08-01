@@ -30,12 +30,12 @@ Enemy::Enemy(){
 	//functions for operational fight
 
 
-void Enemy::attack(Player player){
+void Enemy::attack(Player& player){
 	player.takeDamage(Damage());
 }
 
 unsigned long Enemy::Damage(){
-	enemyDMG = (1+pow((enemyATK/9),1.5)+rand()%10);
+	enemyDMG = (1 + pow((enemyATK / 9) , 1.5) + rand()%10);
 	return enemyDMG;
 }
 
@@ -100,12 +100,11 @@ long Enemy::getSP(){
 	return enemySP;
 }
 
-void Enemy::update(){
+void Enemy::update() {
 	enemyLv=enemyLv*1.5;
 	setMaxHP();
 	setATK();
 	setDEF();
 	setSP();
 	xpToDrop();
-
 }

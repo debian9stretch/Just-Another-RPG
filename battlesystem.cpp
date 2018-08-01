@@ -1,53 +1,52 @@
 #include <iostream>
 #include <string>
-#include "battlesystem.hpp"
 #include "enemy.hpp"
 #include "hero.hpp"
 
-int Battle::battle(){
+int battle() {
 	//make an object for player and enemy alike
 	Player player;
 	Enemy enemy;
 
 	//introduce and start the battle loop
+	std::cout << "Your level is " << player.getLv() << "\n";
 	std::cout << "\nIt seems you've encountered an enemy! Its level is " << enemy.getLv() << " and it has " << enemy.getHealth() << " health!\n";
 
 	//have it loop infinitely for obvious reasons
-	for (;;){
+	for (;;) {
 		std::string choice;
 		//loop battle options with cin so there's no infinite loop here
-		for(;;){
+		for(;;) {
 			std::cout << "\nWhat do you do? Attack or Heal? ";
 			std::cin >> choice;	
 			std::cout << "\n";
 
 			//provide options for battle
-			if(choice=="Attack"||choice=="attack"){
+			if(choice=="Attack"||choice=="attack") {
 				player.attack(enemy);
 				std::cout << "You attacked the enemy! " << "The enemy has " << enemy.getHealth() << " health left!\n";
 				break;
 			}
-			else if(choice=="Heal"||choice=="heal"){
+			else if(choice=="Heal"||choice=="heal") {
 				player.Heal();
 				std::cout << "You healed and are feeling reinvigorated! You now have " << player.getHP() << " health!\n";
-				if (player.getHP()>player.getMaxHP())
+				/*if (player.getHP()>player.getMaxHP())
 				{
 					player.hpCheck();
-				}
+				}*/
 				break;
 			}
-			else if (choice=="Magic"||choice=="magic")
-			{
-				player.magic();
-				std::cout << "Your magic dealt " << player.magic() << " damage to the enemy! The enemy has " << enemy.getHealth() << " left!\n";
+			else if (choice=="Magic"||choice=="magic") {
+				player.magicAttack(enemy);
+				std::cout << "Your magic dealt significant damage to the enemy! The enemy has " << enemy.getHealth() << " left!\n";
 				break;
 			}
-			else{
+			else {
 				std::cout << "That's not a command. Re-enter your choice.\n";
 			}
 		}	
 
-		if (player.getHP()<=0||enemy.getHealth()<=0){
+		if (player.getHP()<=0||enemy.getHealth()<=0) {
 			if (enemy.getHealth()<=0){
 				player.update();
 				enemy.update();
@@ -67,7 +66,7 @@ int Battle::battle(){
 				std::cout << "\n";
 				break;
 			}
-			if (player.getHP()<=0){
+			if (player.getHP()<=0) {
 				std::cout << "You have been defeated...\n";
 				break;
 			}
@@ -78,5 +77,6 @@ int Battle::battle(){
 	}
 	return 0;
 }
-//playerXP doesn't carry over between battles because it's a different scope. Need to either save between fight and game
-//or make playerExp persistent otherwise
+
+//player and enemy health now doesn't change
+//rip
