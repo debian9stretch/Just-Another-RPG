@@ -18,7 +18,7 @@ public:
 
 	//	mutators/setters
 
-	void setLv();
+	void setLv(Player& player);
 	void setSP();
 	void setATK();
 	void setDEF();
@@ -56,4 +56,8 @@ private:
 	unsigned long maxEnemyHP;
 
 	unsigned long currentEnemyHP;
+};
+
+class Dragon : public Enemy {
+
 };

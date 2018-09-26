@@ -28,7 +28,7 @@ public:
 	void setDEF();
 	void setSP();
 	void setMana();
-	void update();
+	void update(Enemy& enemy);
 	void setXP(unsigned long x);
 
 		//	accessors/getters

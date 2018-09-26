@@ -1,10 +1,10 @@
-#include <iostream>
 #include <cstdlib>
 #include <cmath>
 #include "enemy.hpp"
 #include "hero.hpp"
 
 Player player;
+
 
 	//constructors
 
@@ -47,7 +47,7 @@ void Enemy::takeDamage(unsigned long x){
 	//stats getters
 
 
-void Enemy::setLv(){
+void Enemy::setLv(Player& player){
 	enemyLv=player.getLv()*1.5;
 }
 
@@ -68,7 +68,7 @@ void Enemy::setSP(){
 }
 
 unsigned long Enemy::xpToDrop(){
-	expToDrop = (1+pow(((enemyLv/2)+(rand()%(player.getLv()*10))),2.6)*4);
+	expToDrop = (1 + pow( ( (enemyLv / 2) + ( rand() % (player.getLv() * 10) ) ), 2.6) * 4);
 	return expToDrop;
 }
 

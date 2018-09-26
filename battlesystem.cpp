@@ -3,9 +3,8 @@
 #include "enemy.hpp"
 #include "hero.hpp"
 
-int battle() {
+int battle(Player& player) {
 	//make an object for player and enemy alike
-	Player player;
 	Enemy enemy;
 
 	//introduce and start the battle loop
@@ -18,7 +17,7 @@ int battle() {
 		//loop battle options with cin so there's no infinite loop here
 		for(;;) {
 			std::cout << "\nWhat do you do? Attack or Heal? ";
-			std::cin >> choice;	
+			std::cin >> choice;
 			std::cout << "\n";
 
 			//provide options for battle
@@ -44,15 +43,15 @@ int battle() {
 			else {
 				std::cout << "That's not a command. Re-enter your choice.\n";
 			}
-		}	
+		}
 
 		if (player.getHP()<=0||enemy.getHealth()<=0) {
 			if (enemy.getHealth()<=0){
-				player.update();
+				player.update(enemy);
 				enemy.update();
 				std::cout << "You have slain the enemy! Congratulations!\n";
 				std::cout << "You have gained " << enemy.xpToDrop() << " experience!\n";
-				std::cout << "You are now level " << player.getLv() << "\n"; 
+				std::cout << "You are now level " << player.getLv() << "\n";
 
 
 				std::cout << "Your stats are as follows. \nHealth: " << player.getHP() << "\nAttack: " << player.getATK()
@@ -60,7 +59,7 @@ int battle() {
 				<< "\nAverage damage dealt per hit: " << player.Damage();
 				std::cout << "\n";
 
-				std::cout << "Your enemy's stats are as follows. \nLevel: " << enemy.getLv() 
+				std::cout << "Your enemy's stats are as follows. \nLevel: " << enemy.getLv()
 				<< "\nHealth: " << enemy.getHealth() << "\nAttack: " << enemy.getATK()
 				<< "\nDefense: " << enemy.getDEF() << "\nAverage damage dealt per hit: " << enemy.Damage();
 				std::cout << "\n";
@@ -78,5 +77,8 @@ int battle() {
 	return 0;
 }
 
-//player and enemy health now doesn't change
-//rip
+/*
+	Instantiate multiple enemy class objects using:
+	std::vector<T> v(objCount);
+	
+*/

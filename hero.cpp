@@ -1,4 +1,3 @@
-#include <iostream>
 #include <cstdlib>
 #include <cmath>
 #include "hero.hpp"
@@ -49,7 +48,7 @@ void Player::attack(Enemy& enemy){
 
 void Player::magicAttack(Enemy& enemy){
 	magicDMG = ((pow((playerLv/1.3),1.9)+rand()%(playerLv*10)-1)+(playerMana))/2;
-	enemy.takeDamage(magicDMG);	
+	enemy.takeDamage(magicDMG);
 }
 
 void Player::hpCheck(){
@@ -125,7 +124,7 @@ unsigned long Player::getMana(){
 	return playerMana;
 }
 
-void Player::update(){
+void Player::update(Enemy& enemy){
 	setXP(enemy.xpToDrop());
 	playerLv = pow((playerExp+1)/5,0.4)+1;
 	maxHP = pow((playerLv/1.2),2)+15;
@@ -133,7 +132,7 @@ void Player::update(){
 	playerDEF = ((pow((playerLv/1.6),2)-(playerLv/1.6))+6)/2;
 	playerSP = ((pow((playerLv/1.1),2)-(playerLv/1.2))+6)/2;
 	playerMana = ((pow((playerLv/1.1),2)-(playerLv/1.2))+6)/2;
-} 
+}
 
 /*
 
