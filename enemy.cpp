@@ -68,7 +68,7 @@ void Enemy::setSP(){
 }
 
 unsigned long Enemy::xpToDrop(){
-	expToDrop = (1 + pow( ( (enemyLv / 2) + ( rand() % (player.getLv() * 10) ) ), 2.6) * 4);
+	expToDrop = (1 + pow(((enemyLv / 3) + (rand() % (player.getLv() * 10) + 1)) , 2.6) * 4);
 	return expToDrop;
 }
 
@@ -100,8 +100,8 @@ long Enemy::getSP(){
 	return enemySP;
 }
 
-void Enemy::update() {
-	enemyLv=enemyLv*1.5;
+void Enemy::update(Player& player) {
+	setLv(player);
 	setMaxHP();
 	setATK();
 	setDEF();

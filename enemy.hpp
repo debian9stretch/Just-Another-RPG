@@ -35,7 +35,7 @@ public:
 	long getDEF();
 	long getSP();
 	unsigned long xpToDrop();
-	void update();
+	void update(Player& player);
 
 private:
 
@@ -56,8 +56,4 @@ private:
 	unsigned long maxEnemyHP;
 
 	unsigned long currentEnemyHP;
-};
-
-class Dragon : public Enemy {
-
 };

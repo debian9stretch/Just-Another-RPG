@@ -52,20 +52,25 @@ void Player::magicAttack(Enemy& enemy){
 }
 
 void Player::hpCheck(){
-	playerHP=getMaxHP();
+	setHP();
 }
 
 
 	//stat mutators  (setters)
 
 
-void Player::setLv(){
-	playerLv=pow((playerExp+1)/5, 0.4)+1;
+void Player::setLv(int x){
+	playerLv = x;
+	//playerLv=pow((playerExp + 1) / 5, 0.4) + 1;
 }
 
 long Player::setMaxHP(){
 	maxHP = pow((playerLv/1.2),2)+15;
 	return maxHP;
+}
+
+void Player::setHP() {
+	playerHP = maxHP;
 }
 
 void Player::setATK(){
@@ -77,11 +82,11 @@ void Player::setDEF(){
 }
 
 void Player::setSP(){
-	playerSP = ((pow((playerLv/1.1),2)-(playerLv/1.2))+6)/2;
+	playerSP = ((pow((playerLv / 1.1) , 2) - (playerLv / 1.2)) + 6) / 2;
 }
 
 void Player::setMana(){
-	playerMana = ((pow((playerLv/1.1),2)-(playerLv/1.2))+6)/2;
+	playerMana = pow(playerLv, 2.2);
 }
 
 void Player::setXP(unsigned long x){
@@ -125,13 +130,13 @@ unsigned long Player::getMana(){
 }
 
 void Player::update(Enemy& enemy){
-	setXP(enemy.xpToDrop());
-	playerLv = pow((playerExp+1)/5,0.4)+1;
-	maxHP = pow((playerLv/1.2),2)+15;
-	playerATK = ((pow((playerLv/1.5),2)-(playerLv/1.5))+6)/2;
-	playerDEF = ((pow((playerLv/1.6),2)-(playerLv/1.6))+6)/2;
-	playerSP = ((pow((playerLv/1.1),2)-(playerLv/1.2))+6)/2;
-	playerMana = ((pow((playerLv/1.1),2)-(playerLv/1.2))+6)/2;
+	//setXP(enemy.xpToDrop());
+	//setLv();
+	setMaxHP();
+	setATK();
+	setDEF();
+	setSP();
+	setMana();
 }
 
 /*

@@ -22,8 +22,9 @@ public:
 
 		//	mutators/setters
 
-	void setLv();
+	void setLv(int x);
 	long setMaxHP();
+	void setHP();
 	void setATK();
 	void setDEF();
 	void setSP();
@@ -33,13 +34,14 @@ public:
 
 		//	accessors/getters
 
+	long getMaxHP();
+	long getHP();
 	unsigned long getLv();
 	unsigned long getDEF();
 	unsigned long getMana();
 	unsigned long getATK();
 	unsigned long getSP();
-	long getMaxHP();
-	long getHP();
+	unsigned long getXP();
 
 private:
 	int baseXP=10;
