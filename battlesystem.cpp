@@ -8,11 +8,16 @@ int battle(Player& player) {
 	//make an object of enemy to fight
 	Enemy enemy;
 
-	//for testing purposes, let's allow the player to set player level
+	/*//for testing purposes, let's allow the player to set player level
 	int x;
 	std::cout << "Pick a level for your player: ";
 	std::cin >> x;
-	player.setLv(x);
+	player.setLv(x);*/
+
+	//update enemy and player so enemy can spawn at a random level and player can do a thing
+	player.update();
+	enemy.update();
+
 	//introduce and start the battle loop
 	std::cout << "\nIt seems you've encountered an enemy! Its level is " << enemy.getLv() << " and it has " << enemy.getHealth() 
 	<< " health!\n Your level is " << player.getLv() << ".\n";
@@ -34,10 +39,9 @@ int battle(Player& player) {
 			}
 			else if(choice=="Heal"||choice=="heal") {
 				player.Heal();
-				std::cout << "You healed and are feeling reinvigorated! You now have " << player.getHP() << " health!\n";
-				if (player.getHP()>player.getMaxHP())
-				{
-					player.hpCheck();
+				if (player.getHP()>player.getMaxHP()){
+					player.setHP();
+					std::cout << "You healed and are feeling reinvigorated! You now have " << player.getHP() << " health!\n";
 				}
 				break;
 			}
@@ -56,8 +60,9 @@ int battle(Player& player) {
 
 		if (player.getHP()<=0||enemy.getHealth()<=0) {
 			if (enemy.getHealth()<=0){
-				player.update(enemy);
-				enemy.update(player);
+				player.addXP(enemy.xpToDrop());
+				player.update();
+				enemy.update();
 				std::cout << "You have slain the enemy! Congratulations!\n";
 				std::cout << "You have gained " << enemy.xpToDrop() << " experience!\n";
 				std::cout << "You are now level " << player.getLv() << "\n";
@@ -86,10 +91,10 @@ int battle(Player& player) {
 	std::ofstream saveFile;
 	saveFile.open("stats.txt");
 
-		saveFile << "Your stats are as follows. Level: " << player.getLv()
-		<< "\nMax Health: " << player.getMaxHP() << "\nAttack: " << player.getATK()
-		<< "\nDefense: " << player.getDEF() << "\nSpecial: " << player.getSP()
-		<< "\nMana: " << player.getMana() << "\n";
+		saveFile << player.getXP() << "\n" << player.getLv()
+		<< player.getMaxHP() << "\n" << player.getATK()
+		<< player.getDEF() << "\n" << player.getSP()
+		<< "\n" << player.getMana() << "\n";
 	
 	saveFile.close();
 

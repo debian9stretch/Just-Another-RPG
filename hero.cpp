@@ -18,8 +18,8 @@ Player::Player(unsigned long l, unsigned long h, unsigned long a, unsigned long 
 
 Player::Player(){
 	playerLv = 1;
-	playerHP = 15;
-	maxHP = playerHP;
+	maxHP = calcPlayerMaxHP();
+	playerHP = maxHP;
 	playerATK = 5;
 	playerDEF = 4;
 	playerMana = 10;
@@ -47,49 +47,43 @@ void Player::attack(Enemy& enemy){
 }
 
 void Player::magicAttack(Enemy& enemy){
-	magicDMG = ((pow((playerLv/1.3),1.9)+rand()%(playerLv*10)-1)+(playerMana))/2;
+	magicDMG = rand() % playerMana + (playerLv * 10);
 	enemy.takeDamage(magicDMG);
-}
-
-void Player::hpCheck(){
-	setHP();
 }
 
 
 	//stat mutators  (setters)
 
 
-void Player::setLv(int x){
-	playerLv = x;
-	//playerLv=pow((playerExp + 1) / 5, 0.4) + 1;
+unsigned long Player::calcPlayerLv(){
+	return pow(playerExp / 5, 0.4) + 1;
 }
 
-long Player::setMaxHP(){
-	maxHP = pow((playerLv/1.2),2)+15;
-	return maxHP;
+unsigned long Player::calcPlayerMaxHP(){
+	return pow(playerLv, 2.1) + 15;
 }
 
 void Player::setHP() {
 	playerHP = maxHP;
 }
 
-void Player::setATK(){
-	playerATK = (((pow((playerLv/1.5),2))-(playerLv/1.5))+6)/2;
+unsigned long Player::calcPlayerATK(){
+	return pow(playerLv, 2.05) + 10;
 }
 
-void Player::setDEF(){
-	playerDEF = ((pow((playerLv/1.6),2)-(playerLv/1.6))+6)/2;
+unsigned long Player::calcPlayerDEF(){
+	return pow(playerLv, 2.1) + 10;
 }
 
-void Player::setSP(){
-	playerSP = ((pow((playerLv / 1.1) , 2) - (playerLv / 1.2)) + 6) / 2;
+unsigned long Player::calcPlayerSP(){
+	return pow(playerLv, 1.9) + 10;
 }
 
-void Player::setMana(){
-	playerMana = pow(playerLv, 2.2);
+unsigned long Player::calcPlayerMP(){
+	return pow(playerLv, 2.2) + 20;
 }
 
-void Player::setXP(unsigned long x){
+void Player::addXP(unsigned long x){
 	playerExp+=x;
 }
 
@@ -129,26 +123,17 @@ unsigned long Player::getMana(){
 	return playerMana;
 }
 
-void Player::update(Enemy& enemy){
-	//setXP(enemy.xpToDrop());
-	//setLv();
-	setMaxHP();
-	setATK();
-	setDEF();
-	setSP();
-	setMana();
+unsigned long Player::getXP() {
+	return playerExp;
 }
 
-/*
+//a special setter so it gets its own section
 
-		//STAT DECLARATIONS DON'T LOSE
-
-		playerLv=pow((playerExp+1)/5, 0.4)+1;
-		maxHP = pow((playerLv/1.2),2)+15;
-		playerATK = ((pow((playerLv/1.5),2)-(playerLv/1.5))+6)/2;
-		playerDEF = ((pow((playerLv/1.6),2)-(playerLv/1.6))+6)/2;
-		playerSP = ((pow((playerLv/1.1),2)-(playerLv/1.2))+6)/2;
-		playerMana = ((pow((playerLv/1.1),2)-(playerLv/1.2))+6)/2;
-
-		//DON'T LOSE
-*/
+void Player::update(){
+	playerLv = calcPlayerLv();
+	maxHP = calcPlayerMaxHP();
+	playerATK = calcPlayerATK();
+	playerDEF = calcPlayerDEF();
+	playerSP = calcPlayerSP();
+	playerMana = calcPlayerMP();
+}

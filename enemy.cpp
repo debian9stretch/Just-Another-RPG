@@ -47,29 +47,28 @@ void Enemy::takeDamage(unsigned long x){
 	//stats getters
 
 
-void Enemy::setLv(Player& player){
-	enemyLv=player.getLv()*1.5;
+unsigned long Enemy::calcEnemyLv(){
+	return rand() % (player.getLv()+5) + (player.getLv()-1);
 }
 
-void Enemy::setMaxHP(){
-	maxEnemyHP = 1+pow((enemyLv/1.9),3);
+unsigned long Enemy::calcEnemyMaxHP(){
+	return 1+pow((enemyLv/1.9),3);
 }
 
-void Enemy::setATK(){
-	enemyATK = 1+pow((enemyLv/4.9),2);
+unsigned long Enemy::calcEnemyATK(){
+	return 1+pow((enemyLv/4.9),2);
 }
 
-void Enemy::setDEF(){
-	enemyDEF = 1+pow((enemyLv/4.5),1.9);
+unsigned long Enemy::calcEnemyDEF(){
+	return 1+pow((enemyLv/4.5),1.9);
 }
 
-void Enemy::setSP(){
-	enemySP = 1+pow((enemyLv/5),2);
+unsigned long Enemy::calcEnemySP(){
+	return 1+pow((enemyLv/5),2);
 }
 
 unsigned long Enemy::xpToDrop(){
-	expToDrop = (1 + pow(((enemyLv / 3) + (rand() % (player.getLv() * 10) + 1)) , 2.6) * 4);
-	return expToDrop;
+	return (pow(enemyLv, 2) - (rand() % player.getLv() + 1)) + 10;
 }
 
 
@@ -100,11 +99,11 @@ long Enemy::getSP(){
 	return enemySP;
 }
 
-void Enemy::update(Player& player) {
-	setLv(player);
-	setMaxHP();
-	setATK();
-	setDEF();
-	setSP();
+void Enemy::update() {
+	enemyLv = calcEnemyLv();
+	maxEnemyHP = calcEnemyMaxHP();
+	enemyATK = calcEnemyATK();
+	enemyDEF = calcEnemyDEF();
+	enemySP = calcEnemySP();
 	xpToDrop();
 }

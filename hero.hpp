@@ -18,19 +18,18 @@ public:
 	void attack(Enemy& enemy);
 	void magicAttack(Enemy& enemy);
 	void takeDamage(unsigned long x);
-	void hpCheck();
 
 		//	mutators/setters
 
-	void setLv(int x);
-	long setMaxHP();
+	unsigned long calcPlayerLv();
+	unsigned long calcPlayerMaxHP();
 	void setHP();
-	void setATK();
-	void setDEF();
-	void setSP();
-	void setMana();
-	void update(Enemy& enemy);
-	void setXP(unsigned long x);
+	unsigned long calcPlayerATK();
+	unsigned long calcPlayerDEF();
+	unsigned long calcPlayerSP();
+	unsigned long calcPlayerMP();
+	void update();
+	void addXP(unsigned long x);
 
 		//	accessors/getters
 
@@ -51,7 +50,6 @@ private:
 	unsigned long heal;
 	unsigned long damage;
 	unsigned long playerATK;
-	unsigned long health;
 	unsigned long maxHP;
 	unsigned long playerHP;
 	unsigned long magicDMG;

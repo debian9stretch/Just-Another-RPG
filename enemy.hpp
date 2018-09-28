@@ -18,11 +18,11 @@ public:
 
 	//	mutators/setters
 
-	void setLv(Player& player);
-	void setSP();
-	void setATK();
-	void setDEF();
-	void setMaxHP();
+	unsigned long calcEnemyLv();
+	unsigned long calcEnemySP();
+	unsigned long calcEnemyATK();
+	unsigned long calcEnemyDEF();
+	unsigned long calcEnemyMaxHP();
 
 	//	accessors/getters
 
@@ -30,12 +30,11 @@ public:
 	long getLv();
 	long getMaxHP();
 	long getHealth();
-	long Health();
 	long getATK();
 	long getDEF();
 	long getSP();
 	unsigned long xpToDrop();
-	void update(Player& player);
+	void update();
 
 private:
 
