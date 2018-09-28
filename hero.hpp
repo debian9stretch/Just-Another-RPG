@@ -33,7 +33,7 @@ public:
 
 		//	accessors/getters
 
-	long getMaxHP();
+	unsigned long getMaxHP();
 	long getHP();
 	unsigned long getLv();
 	unsigned long getDEF();

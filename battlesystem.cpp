@@ -1,22 +1,22 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <random>
+#include <ctime>
 #include "enemy.hpp"
 #include "hero.hpp"
 
-int battle(Player& player) {
+int battle(Player& player){
+	//seed random and see if I get different results
+	srand(time(NULL));
+
 	//make an object of enemy to fight
 	Enemy enemy;
 
-	/*//for testing purposes, let's allow the player to set player level
-	int x;
-	std::cout << "Pick a level for your player: ";
-	std::cin >> x;
-	player.setLv(x);*/
-
-	//update enemy and player so enemy can spawn at a random level and player can do a thing
-	player.update();
-	enemy.update();
+	//update enemy so it'll appear a random level
+	
+	//	ADD uniform_int_distribution TO ALL THE THINGS USING RAND() GET RID OF THAT SHIT HOMIE
+	enemy.update(player);
 
 	//introduce and start the battle loop
 	std::cout << "\nIt seems you've encountered an enemy! Its level is " << enemy.getLv() << " and it has " << enemy.getHealth() 
@@ -62,7 +62,6 @@ int battle(Player& player) {
 			if (enemy.getHealth()<=0){
 				player.addXP(enemy.xpToDrop());
 				player.update();
-				enemy.update();
 				std::cout << "You have slain the enemy! Congratulations!\n";
 				std::cout << "You have gained " << enemy.xpToDrop() << " experience!\n";
 				std::cout << "You are now level " << player.getLv() << "\n";

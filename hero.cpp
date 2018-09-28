@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <cmath>
+#include <random>
 #include "hero.hpp"
 #include "enemy.hpp"
 
@@ -36,13 +37,13 @@ void Player::takeDamage(unsigned long x){
 }
 
 unsigned long Player::Heal(){
-	heal = ((pow(playerLv,1.9)+rand()%(playerLv*10)-1)+(playerMana))/2;
+	heal = ((pow(playerLv, 1.9) + rand() % (playerLv * 10) - 1) + (playerMana)) / 2;
 	playerHP+=heal;
 	return heal;
 }
 
 void Player::attack(Enemy& enemy){
-	damage = ((playerATK*2)+(rand()%(playerLv*10)-1))+1;
+	damage = ((playerATK * 2) + (rand() % (playerLv * 10) + 1)) + 1;
 	enemy.takeDamage(damage);
 }
 
@@ -99,7 +100,7 @@ unsigned long Player::getLv(){
 	return playerLv;
 }
 
-long Player::getMaxHP(){
+unsigned long Player::getMaxHP(){
 	return maxHP;
 }
 

@@ -1,5 +1,6 @@
 #include <cstdlib>
 #include <cmath>
+#include <random>
 #include "enemy.hpp"
 #include "hero.hpp"
 
@@ -20,7 +21,7 @@ Enemy::Enemy(unsigned long l, unsigned long h, unsigned long a, unsigned long d,
 Enemy::Enemy(){
 	enemyLv = 2;
 	maxEnemyHP = 20;
-	currentEnemyHP = maxEnemyHP;
+	currentEnemyHP = 20;
 	enemyATK = 7;
 	enemyDEF = 6;
 	enemySP = 7;
@@ -35,7 +36,7 @@ void Enemy::attack(Player& player){
 }
 
 unsigned long Enemy::Damage(){
-	enemyDMG = (1 + pow((enemyATK / 9) , 1.5) + rand()%10);
+	enemyDMG = (1 + pow((enemyATK / 9) , 1.5) + rand() % 10 + 1);
 	return enemyDMG;
 }
 
@@ -48,7 +49,7 @@ void Enemy::takeDamage(unsigned long x){
 
 
 unsigned long Enemy::calcEnemyLv(){
-	return rand() % (player.getLv()+5) + (player.getLv()-1);
+	return rand() % (player.getLv() + 5) + (player.getLv() - 1);
 }
 
 unsigned long Enemy::calcEnemyMaxHP(){
@@ -99,7 +100,7 @@ long Enemy::getSP(){
 	return enemySP;
 }
 
-void Enemy::update() {
+void Enemy::update(Player& player) {
 	enemyLv = calcEnemyLv();
 	maxEnemyHP = calcEnemyMaxHP();
 	enemyATK = calcEnemyATK();

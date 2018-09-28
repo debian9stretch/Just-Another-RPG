@@ -34,7 +34,7 @@ public:
 	long getDEF();
 	long getSP();
 	unsigned long xpToDrop();
-	void update();
+	void update(Player& player);
 
 private:
 
