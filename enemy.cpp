@@ -48,8 +48,8 @@ void Enemy::takeDamage(unsigned long x){
 	//stats getters
 
 
-unsigned long Enemy::calcEnemyLv(){
-	return rand() % (player.getLv() + 5) + (player.getLv() - 1);
+unsigned long Enemy::calcEnemyLv(unsigned long x){
+	return rand() % (x + 5) + (x - 1);
 }
 
 unsigned long Enemy::calcEnemyMaxHP(){
@@ -101,7 +101,7 @@ long Enemy::getSP(){
 }
 
 void Enemy::update(Player& player) {
-	enemyLv = calcEnemyLv();
+	enemyLv = calcEnemyLv(player.getLv());
 	maxEnemyHP = calcEnemyMaxHP();
 	enemyATK = calcEnemyATK();
 	enemyDEF = calcEnemyDEF();

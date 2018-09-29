@@ -7,15 +7,13 @@
 #include "hero.hpp"
 
 int battle(Player& player){
-	//seed random and see if I get different results
-	srand(time(NULL));
 
 	//make an object of enemy to fight
 	Enemy enemy;
 
 	//update enemy so it'll appear a random level
 	
-	//	ADD uniform_int_distribution TO ALL THE THINGS USING RAND() GET RID OF THAT SHIT HOMIE
+	//	uniform_int_distribution didn't *quite* work. Ask Jack later
 	enemy.update(player);
 
 	//introduce and start the battle loop
@@ -62,6 +60,7 @@ int battle(Player& player){
 			if (enemy.getHealth()<=0){
 				player.addXP(enemy.xpToDrop());
 				player.update();
+				enemy.update(player);
 				std::cout << "You have slain the enemy! Congratulations!\n";
 				std::cout << "You have gained " << enemy.xpToDrop() << " experience!\n";
 				std::cout << "You are now level " << player.getLv() << "\n";

@@ -18,7 +18,7 @@ public:
 
 	//	mutators/setters
 
-	unsigned long calcEnemyLv();
+	unsigned long calcEnemyLv(unsigned long x);
 	unsigned long calcEnemySP();
 	unsigned long calcEnemyATK();
 	unsigned long calcEnemyDEF();
@@ -49,8 +49,6 @@ private:
 	unsigned long enemyDEF;
 
 	unsigned long enemyLv;
-
-	unsigned long expToDrop;
 
 	unsigned long maxEnemyHP;
 
