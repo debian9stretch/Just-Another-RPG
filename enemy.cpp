@@ -49,23 +49,23 @@ void Enemy::takeDamage(unsigned long x){
 
 
 unsigned long Enemy::calcEnemyLv(unsigned long x){
-	return rand() % (x + 5) + (x - 1);
+	return (rand() % (x + 5) + (x - 1)) + 1;
 }
 
 unsigned long Enemy::calcEnemyMaxHP(){
-	return 1+pow((enemyLv/1.9),3);
+	return pow(enemyLv, 2.2) + 20;
 }
 
 unsigned long Enemy::calcEnemyATK(){
-	return 1+pow((enemyLv/4.9),2);
+	return pow(enemyLv, 2.1) + 10;
 }
 
 unsigned long Enemy::calcEnemyDEF(){
-	return 1+pow((enemyLv/4.5),1.9);
+	return pow(enemyLv, 1.9) + 10;
 }
 
 unsigned long Enemy::calcEnemySP(){
-	return 1+pow((enemyLv/5),2);
+	return pow(enemyLv, 2) + 10;
 }
 
 unsigned long Enemy::xpToDrop(){
@@ -103,6 +103,7 @@ long Enemy::getSP(){
 void Enemy::update(Player& player) {
 	enemyLv = calcEnemyLv(player.getLv());
 	maxEnemyHP = calcEnemyMaxHP();
+	currentEnemyHP = maxEnemyHP;
 	enemyATK = calcEnemyATK();
 	enemyDEF = calcEnemyDEF();
 	enemySP = calcEnemySP();

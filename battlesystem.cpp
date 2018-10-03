@@ -12,7 +12,6 @@ int battle(Player& player){
 	Enemy enemy;
 
 	//update enemy so it'll appear a random level
-	
 	//	uniform_int_distribution didn't *quite* work. Ask Jack later
 	enemy.update(player);
 

@@ -133,6 +133,7 @@ unsigned long Player::getXP() {
 void Player::update(){
 	playerLv = calcPlayerLv();
 	maxHP = calcPlayerMaxHP();
+	playerHP = maxHP;
 	playerATK = calcPlayerATK();
 	playerDEF = calcPlayerDEF();
 	playerSP = calcPlayerSP();
