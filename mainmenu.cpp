@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include "mainmenu.h"
+#include "mainmenu.hpp"
 #include "hero.hpp"
 
 class Player;

@@ -10,9 +10,8 @@ public:
 	Player();
 	Player(unsigned long l, unsigned long h, unsigned long a, unsigned long d, unsigned long m, unsigned long s);
 	
-		//battle functions
+		//	battle functions
 
-	void run();
 	long Damage();
 	unsigned long Heal();
 	void attack(Enemy& enemy);
@@ -21,20 +20,20 @@ public:
 
 		//	mutators/setters
 
+	void setHP();
+	void update();
+	void addXP(unsigned long x);
 	unsigned long calcPlayerLv();
 	unsigned long calcPlayerMaxHP();
-	void setHP();
 	unsigned long calcPlayerATK();
 	unsigned long calcPlayerDEF();
 	unsigned long calcPlayerSP();
 	unsigned long calcPlayerMP();
-	void update();
-	void addXP(unsigned long x);
 
 		//	accessors/getters
 
-	unsigned long getMaxHP();
 	long getHP();
+	unsigned long getMaxHP();
 	unsigned long getLv();
 	unsigned long getDEF();
 	unsigned long getMana();
@@ -44,8 +43,9 @@ public:
 
 private:
 	int baseXP=10;
+	unsigned long playerExp = 0;
 	unsigned long playerLv;
-	unsigned long playerExp=0;
+	unsigned long playerMaxMP;
 	unsigned long playerMana;
 	unsigned long heal;
 	unsigned long damage;

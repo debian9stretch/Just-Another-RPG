@@ -37,7 +37,7 @@ void Player::takeDamage(unsigned long x){
 }
 
 unsigned long Player::Heal(){
-	heal = ((pow(playerLv, 1.9) + rand() % (playerLv * 10) - 1) + (playerMana)) / 2;
+	heal = ((pow(playerLv, 1.9) + rand() % (playerLv * 10) + 1) + ((playerMana)) / 2);
 	playerHP+=heal;
 	return heal;
 }

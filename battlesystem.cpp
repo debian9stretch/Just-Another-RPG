@@ -20,10 +20,10 @@ int battle(Player& player){
 	<< " health!\n Your level is " << player.getLv() << ".\n";
 
 	//have it loop infinitely for obvious reasons
-	for (;;) {
+	while(true) {
 		std::string choice;
 		//loop battle options with cin so there's no infinite loop here
-		for(;;) {
+		while(true) {
 			std::cout << "\nWhat do you do? Attack or Heal? ";
 			std::cin >> choice;
 			std::cout << "\n";
@@ -47,7 +47,7 @@ int battle(Player& player){
 				std::cout << "Your magic dealt significant damage to the enemy! The enemy has " << enemy.getHealth() << " left!\n";
 				break;
 			}
-			else if (choice == "exit") {
+			else if (choice == "run") {
 				return 0;
 			}
 			else {

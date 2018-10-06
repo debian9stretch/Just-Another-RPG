@@ -4,7 +4,7 @@
 #include "battlesystem.hpp"
 #include "hero.hpp"
 #include "dragon.hpp"
-#include "mainmenu.h"
+#include "mainmenu.hpp"
 
 
 int main(int argc, char const *argv[]) {
@@ -17,7 +17,7 @@ int main(int argc, char const *argv[]) {
 
 	//get user input for whatever the hell they're planning
 	std::string choice;
-	for (;;) {
+	while(true) {
 		std::cin >> choice;
 		if (choice == "start") {
 			break;
@@ -36,7 +36,7 @@ int main(int argc, char const *argv[]) {
 	
 	//create a player object so playing through the game makes a little more sense
 	std::cout << "\nWelcome. You wake up in a place you've never seen before, and this land once unbeknownst to you is \nfilled with strange creatures. \nYou look around, and there is a river to your right filled with the most plump looking fish.\nTo your left is a field with a huge open expanse that stretches on for miles, fairies fluttering in \nthe wind while gracing\nthe land and animals with their magic and presence.\nThere also appear to be dangerous animals such as dragons very far off in the distance.\nIn front of you is mountain range with the purest white snow-capped peaks, and you can\nsee all sorts of flying animals in the sky. It truly is a beautiful sight.\nSo, where would you like to go?\n";
-	for (;;) {
+	while(true) {
 		std::cout << "\nNorth, West, East, or South? ";
 		std::string direction;
 		std::cin >> direction;
