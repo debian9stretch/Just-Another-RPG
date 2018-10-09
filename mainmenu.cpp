@@ -15,7 +15,6 @@ void MainMenu::load(Player& player) {
 	std::ifstream saveFile;
 	saveFile.open("stats.txt");
 	saveFile >> firstNumber;
-	static_cast<unsigned long>(firstNumber);
 	player.addXP(firstNumber);
 	player.update();
 	saveFile.close();

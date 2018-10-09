@@ -1,4 +1,7 @@
 #pragma once
-class Level {
-
+class Area {
+public:
+	int getAreaBase();
+private:
+	int areaBase; 
 };

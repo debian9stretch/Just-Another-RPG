@@ -10,11 +10,13 @@ public:
 
 	//every day inventory accessing methods
 	//these of which are setters
-	
 	void addItem(Item& item, int quantity);
-	void removeItem(Item& item);
+	void removeItem(Item& item, int quantity);
 
 	//these of which are getters
 	void displayItems();
 	Item* getItem();
+
+private:
+	
 };

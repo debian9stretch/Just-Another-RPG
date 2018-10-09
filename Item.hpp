@@ -4,7 +4,6 @@ class Item {
 public:
 	Item();
 
-
 private:
 
 };

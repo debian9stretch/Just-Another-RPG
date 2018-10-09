@@ -2,6 +2,8 @@
 
 class Enemy;
 
+class Item;
+
 class Player {
 public:
 
@@ -22,6 +24,7 @@ public:
 
 	void setHP();
 	void update();
+	void useItem(Item* item);
 	void addXP(unsigned long x);
 	unsigned long calcPlayerLv();
 	unsigned long calcPlayerMaxHP();

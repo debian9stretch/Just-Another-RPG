@@ -6,84 +6,93 @@
 #include "enemy.hpp"
 #include "hero.hpp"
 
-int battle(Player& player){
+int battle(Player& player) {
+
+	//declare a random number for use in deciding enemy count
+	int number_of_enemies = rand() % 5 + 1;
 
 	//make an object of enemy to fight
-	Enemy enemy;
+	std::vector<std::unique_ptr<Enemy>> enemy;
 
-	//update enemy so it'll appear a random level
-	//	uniform_int_distribution didn't *quite* work. Ask Jack later
-	enemy.update(player);
+	for (int i = 0; i < number_of_enemies; ++i) {
+		enemy.emplace_back(std::make_unique<Enemy>());
+	}
+	for (int x = 0; x < number_of_enemies; x++) {
 
-	//introduce and start the battle loop
-	std::cout << "\nIt seems you've encountered an enemy! Its level is " << enemy.getLv() << " and it has " << enemy.getHealth() 
-	<< " health!\n Your level is " << player.getLv() << ".\n";
+		//update enemy so it'll appear a random level
+		//	uniform_int_distribution didn't *quite* work. Ask Jack later
+		enemy[x]->update(player);
 
-	//have it loop infinitely for obvious reasons
-	while(true) {
-		std::string choice;
-		//loop battle options with cin so there's no infinite loop here
-		while(true) {
-			std::cout << "\nWhat do you do? Attack or Heal? ";
-			std::cin >> choice;
-			std::cout << "\n";
+		//introduce and start the battle loop
+		std::cout << "\nIt seems you've encountered an enemy! Its level is " << enemy[x]->getLv() << " and it has " << enemy[x]->getHealth()
+			<< " health!\n Your level is " << player.getLv() << ".\n";
 
-			//provide options for battle
-			if(choice=="Attack"||choice=="attack") {
-				player.attack(enemy);
-				std::cout << "You attacked the enemy! " << "The enemy has " << enemy.getHealth() << " health left!\n";
-				break;
-			}
-			else if(choice=="Heal"||choice=="heal") {
-				player.Heal();
-				if (player.getHP()>player.getMaxHP()){
-					player.setHP();
-					std::cout << "You healed and are feeling reinvigorated! You now have " << player.getHP() << " health!\n";
+		//have it loop infinitely for obvious reasons
+		while (true) {
+			std::string choice;
+			//loop battle options with cin so there's no infinite loop here
+			while (true) {
+				std::cout << "\nWhat do you do? Attack or Heal? ";
+				std::cin >> choice;
+				std::cout << "\n";
+
+				//provide options for battle
+				if (choice == "Attack" || choice == "attack") {
+					player.attack(*enemy[x]);
+					std::cout << "You attacked the enemy! " << "The enemy has " << enemy[x]->getHealth() << " health left!\n";
+					break;
 				}
-				break;
+				else if (choice == "Heal" || choice == "heal") {
+					player.Heal();
+					if (player.getHP() > player.getMaxHP()) {
+						player.setHP();
+						std::cout << "You healed and are feeling reinvigorated! You now have " << player.getHP() << " health!\n";
+					}
+					break;
+				}
+				else if (choice == "Magic" || choice == "magic") {
+					player.magicAttack(*enemy[x]);
+					std::cout << "Your magic dealt significant damage to the enemy! The enemy has " << enemy[x]->getHealth() << " left!\n";
+					break;
+				}
+				else if (choice == "run") {
+					return 0;
+				}
+				else {
+					std::cout << "That's not a command. Re-enter your choice.\n";
+				}
 			}
-			else if (choice=="Magic"||choice=="magic") {
-				player.magicAttack(enemy);
-				std::cout << "Your magic dealt significant damage to the enemy! The enemy has " << enemy.getHealth() << " left!\n";
-				break;
+
+			if (player.getHP() <= 0 || enemy[x]->getHealth() <= 0) {
+				if (enemy[x]->getHealth() <= 0) {
+					player.addXP(enemy[x]->xpToDrop());
+					player.update();
+					enemy[x]->update(player);
+					std::cout << "You have slain the enemy! Congratulations!\n";
+					std::cout << "You have gained " << enemy[x]->xpToDrop() << " experience!\n";
+					std::cout << "You are now level " << player.getLv() << "\n";
+
+
+					std::cout << "Your stats are as follows. \nHealth: " << player.getHP() << "\nAttack: " << player.getATK()
+						<< "\nDefense: " << player.getDEF() << "\nMana: " << player.getMana()
+						<< "\nAverage damage dealt per hit: " << player.Damage();
+					std::cout << "\n";
+
+					std::cout << "Your enemy's stats are as follows. \nLevel: " << enemy[x]->getLv()
+						<< "\nHealth: " << enemy[x]->getHealth() << "\nAttack: " << enemy[x]->getATK()
+						<< "\nDefense: " << enemy[x]->getDEF() << "\nAverage damage dealt per hit: " << enemy[x]->Damage();
+					std::cout << "\n";
+					break;
+				}
+				if (player.getHP() <= 0) {
+					std::cout << "You have been defeated...\n";
+					break;
+				}
 			}
-			else if (choice == "run") {
-				return 0;
-			}
-			else {
-				std::cout << "That's not a command. Re-enter your choice.\n";
-			}
+			enemy[x]->attack(player);
+			std::cout << "The enemy has attacked you!\n";
+			std::cout << "You have " << player.getHP() << " HP left!\n";
 		}
-
-		if (player.getHP()<=0||enemy.getHealth()<=0) {
-			if (enemy.getHealth()<=0){
-				player.addXP(enemy.xpToDrop());
-				player.update();
-				enemy.update(player);
-				std::cout << "You have slain the enemy! Congratulations!\n";
-				std::cout << "You have gained " << enemy.xpToDrop() << " experience!\n";
-				std::cout << "You are now level " << player.getLv() << "\n";
-
-
-				std::cout << "Your stats are as follows. \nHealth: " << player.getHP() << "\nAttack: " << player.getATK()
-				<< "\nDefense: " << player.getDEF() << "\nMana: " << player.getMana()
-				<< "\nAverage damage dealt per hit: " << player.Damage();
-				std::cout << "\n";
-
-				std::cout << "Your enemy's stats are as follows. \nLevel: " << enemy.getLv()
-				<< "\nHealth: " << enemy.getHealth() << "\nAttack: " << enemy.getATK()
-				<< "\nDefense: " << enemy.getDEF() << "\nAverage damage dealt per hit: " << enemy.Damage();
-				std::cout << "\n";
-				break;
-			}
-			if (player.getHP()<=0) {
-				std::cout << "You have been defeated...\n";
-				break;
-			}
-		}
-		enemy.attack(player);
-		std::cout << "The enemy has attacked you!\n";
-		std::cout << "You have " << player.getHP() << " HP left!\n";
 	}
 	std::ofstream saveFile;
 	saveFile.open("stats.txt");

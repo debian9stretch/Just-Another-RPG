@@ -3,30 +3,31 @@
 #include <random>
 #include "enemy.hpp"
 #include "hero.hpp"
+#include "level.hpp"
 
 Player player;
+
+Area area;
 
 
 	//constructors
 
-Enemy::Enemy(unsigned long l, unsigned long h, unsigned long a, unsigned long d, unsigned long s){
-	enemyLv = l;
-	currentEnemyHP = h;
-	maxEnemyHP = currentEnemyHP;
-	enemyATK = a;
-	enemyDEF = d;
-	enemySP = s;
-}
+Enemy::Enemy(unsigned long l, unsigned long h, unsigned long a, unsigned long d, unsigned long s)
+	: enemyLv(l)
+	, currentEnemyHP(h)
+	, maxEnemyHP(h)
+	, enemyATK(a)
+	, enemyDEF(d)
+	, enemySP(s) {};
 
-Enemy::Enemy(){
-	enemyLv = 2;
-	maxEnemyHP = 20;
-	currentEnemyHP = 20;
-	enemyATK = 7;
-	enemyDEF = 6;
-	enemySP = 7;
-}
 
+Enemy::Enemy()
+	: enemyLv(2)
+	, currentEnemyHP(20)
+	, maxEnemyHP(20)
+	, enemyATK(10)
+	, enemyDEF(10)
+	, enemySP(10) {};
 
 	//functions for operational fight
 
@@ -49,7 +50,8 @@ void Enemy::takeDamage(unsigned long x){
 
 
 unsigned long Enemy::calcEnemyLv(unsigned long x){
-	return (rand() % (x + 5) + (x - 1)) + 1;
+	enemyLv = area.getAreaBase() + (rand() % 5 + 0);
+	return enemyLv;
 }
 
 unsigned long Enemy::calcEnemyMaxHP(){
