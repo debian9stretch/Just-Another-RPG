@@ -9,13 +9,14 @@ public:
 	Inventory();
 
 	//every day inventory accessing methods
-	//these of which are setters
+	//these of which are settersip
+
 	void addItem(Item& item, int quantity);
 	void removeItem(Item& item, int quantity);
 
 	//these of which are getters
 	void displayItems();
-	Item* getItem();
+	Item* getItem(Item* item);
 
 private:
 	

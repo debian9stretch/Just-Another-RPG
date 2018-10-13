@@ -5,8 +5,9 @@
 #include <ctime>
 #include "enemy.hpp"
 #include "hero.hpp"
+#include "level.hpp"
 
-int battle(Player& player) {
+int battle(Player& player, Area& area) {
 
 	//declare a random number for use in deciding enemy count
 	int number_of_enemies = rand() % 5 + 1;
@@ -17,11 +18,14 @@ int battle(Player& player) {
 	for (int i = 0; i < number_of_enemies; ++i) {
 		enemy.emplace_back(std::make_unique<Enemy>());
 	}
+	std::cout << "number of enemies to fight: " << enemy.size() << "\n";
 	for (int x = 0; x < number_of_enemies; x++) {
+
+		std::cout << "Area base level is: " << area.getAreaBase() << "\n";
 
 		//update enemy so it'll appear a random level
 		//	uniform_int_distribution didn't *quite* work. Ask Jack later
-		enemy[x]->update(player);
+		enemy[x]->update(area);
 
 		//introduce and start the battle loop
 		std::cout << "\nIt seems you've encountered an enemy! Its level is " << enemy[x]->getLv() << " and it has " << enemy[x]->getHealth()
@@ -32,7 +36,7 @@ int battle(Player& player) {
 			std::string choice;
 			//loop battle options with cin so there's no infinite loop here
 			while (true) {
-				std::cout << "\nWhat do you do? Attack or Heal? ";
+				std::cout << "\nWhat do you do? Attack, Heal, use magic, or run? ";
 				std::cin >> choice;
 				std::cout << "\n";
 
@@ -56,6 +60,7 @@ int battle(Player& player) {
 					break;
 				}
 				else if (choice == "run") {
+					std::cout << "You successfully ran away!\n";
 					return 0;
 				}
 				else {
@@ -67,7 +72,6 @@ int battle(Player& player) {
 				if (enemy[x]->getHealth() <= 0) {
 					player.addXP(enemy[x]->xpToDrop());
 					player.update();
-					enemy[x]->update(player);
 					std::cout << "You have slain the enemy! Congratulations!\n";
 					std::cout << "You have gained " << enemy[x]->xpToDrop() << " experience!\n";
 					std::cout << "You are now level " << player.getLv() << "\n";
@@ -96,7 +100,6 @@ int battle(Player& player) {
 	}
 	std::ofstream saveFile;
 	saveFile.open("stats.txt");
-
 		saveFile << player.getXP() << "\n" << player.getLv()
 		<< player.getMaxHP() << "\n" << player.getATK()
 		<< player.getDEF() << "\n" << player.getSP()

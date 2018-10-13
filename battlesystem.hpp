@@ -1,4 +1,5 @@
 #pragma once 
 class Player;
 class Enemy;
-int battle(Player& player);
+class Area;
+int battle(Player& player, Area& area);

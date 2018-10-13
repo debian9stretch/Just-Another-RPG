@@ -2,6 +2,8 @@
 
 class Player;
 
+class Area;
+
 class Enemy {
 public:
 
@@ -18,7 +20,7 @@ public:
 
 	//	mutators/setters
 
-	unsigned long calcEnemyLv(unsigned long x);
+	unsigned long calcEnemyLv(Area& area);
 	unsigned long calcEnemySP();
 	unsigned long calcEnemyATK();
 	unsigned long calcEnemyDEF();
@@ -34,7 +36,7 @@ public:
 	long getDEF();
 	long getSP();
 	unsigned long xpToDrop();
-	void update(Player& player);
+	void update(Area& area);
 
 private:
 

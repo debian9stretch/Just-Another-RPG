@@ -17,6 +17,6 @@ void Inventory::displayItems() {
 
 }
 
-/*Item* Inventory::getItem() {
-
-}*/
+Item* Inventory::getItem(Item* item) {
+	return item;
+}

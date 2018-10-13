@@ -9,7 +9,6 @@ Player player;
 
 Area area;
 
-
 	//constructors
 
 Enemy::Enemy(unsigned long l, unsigned long h, unsigned long a, unsigned long d, unsigned long s)
@@ -46,10 +45,10 @@ void Enemy::takeDamage(unsigned long x){
 }
 
 
-	//stats getters
+	//stats setters
 
 
-unsigned long Enemy::calcEnemyLv(unsigned long x){
+unsigned long Enemy::calcEnemyLv(Area& area){
 	enemyLv = area.getAreaBase() + (rand() % 5 + 0);
 	return enemyLv;
 }
@@ -102,8 +101,8 @@ long Enemy::getSP(){
 	return enemySP;
 }
 
-void Enemy::update(Player& player) {
-	enemyLv = calcEnemyLv(player.getLv());
+void Enemy::update(Area& area) {
+	enemyLv = calcEnemyLv(area);
 	maxEnemyHP = calcEnemyMaxHP();
 	currentEnemyHP = maxEnemyHP;
 	enemyATK = calcEnemyATK();
