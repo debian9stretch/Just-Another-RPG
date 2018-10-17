@@ -18,7 +18,7 @@ public:
 	unsigned long Heal();
 	void attack(Enemy& enemy);
 	void magicAttack(Enemy& enemy);
-	void takeDamage(unsigned long x);
+	void takeDamage(unsigned long exp);
 
 		//	mutators/setters
 
