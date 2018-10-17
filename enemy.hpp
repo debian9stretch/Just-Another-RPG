@@ -17,6 +17,7 @@ public:
 	unsigned long Damage();
 	void attack(Player& player);
 	void takeDamage(unsigned long x);
+	Item& dropItem();
 
 	//	mutators/setters
 

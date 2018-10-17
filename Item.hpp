@@ -4,6 +4,6 @@ class Item {
 public:
 	Item();
 
-private:
+	void returnItemEffect(Item* item);
 
 };

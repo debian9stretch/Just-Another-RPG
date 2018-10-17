@@ -16,7 +16,7 @@ public:
 
 	//these of which are getters
 	void displayItems();
-	Item* getItem(Item* item);
+	Item* getItem();
 
 private:
 	

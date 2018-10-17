@@ -4,6 +4,8 @@ class Enemy;
 
 class Item;
 
+class Inventory;
+
 class Player {
 public:
 
@@ -16,6 +18,8 @@ public:
 
 	long Damage();
 	unsigned long Heal();
+	void useItem(Item& item);
+	void openInventory(Inventory& inventory);
 	void attack(Enemy& enemy);
 	void magicAttack(Enemy& enemy);
 	void takeDamage(unsigned long x);
@@ -24,7 +28,7 @@ public:
 
 	void setHP();
 	void update();
-	void useItem(Item* item);
+	void useItem(Item& item);
 	void addXP(unsigned long x);
 	unsigned long calcPlayerLv();
 	unsigned long calcPlayerMaxHP();

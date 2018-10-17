@@ -4,3 +4,7 @@
 Item::Item() {
 
 }
+
+void Item::returnItemEffect(Item* item) {
+
+}

@@ -12,7 +12,7 @@ int battle(Player& player, Area& area) {
 	//declare a random number for use in deciding enemy count
 	int number_of_enemies = rand() % 5 + 1;
 
-	//make an object of enemy to fight
+	//make multiple enemy objects for the fight
 	std::vector<std::unique_ptr<Enemy>> enemy;
 
 	for (int i = 0; i < number_of_enemies; ++i) {
