@@ -10,7 +10,7 @@ public:
 		//constructors
 
 	Player();
-	Player(unsigned long l, unsigned long h, unsigned long a, unsigned long d, unsigned long m, unsigned long s);
+	Player(unsigned long level, unsigned long health, unsigned long attack, unsigned long defense, unsigned long mana, unsigned long specialPower);
 	
 		//	battle functions
 
