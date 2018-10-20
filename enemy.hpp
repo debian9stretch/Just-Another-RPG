@@ -4,6 +4,8 @@ class Player;
 
 class Area;
 
+class Item;
+
 class Enemy {
 public:
 

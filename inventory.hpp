@@ -11,7 +11,7 @@ public:
 	//every day inventory accessing methods
 	//these of which are settersip
 
-	void addItem(Item& item, int quantity);
+	void addItem(std::vector<std::unique_ptr<Item>> inventory, Item& item, int quantity);
 	void removeItem(Item& item, int quantity);
 
 	//these of which are getters

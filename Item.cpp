@@ -5,6 +5,6 @@ Item::Item() {
 
 }
 
-void Item::returnItemEffect(Item* item) {
+void Item::returnItemEffect(Item& item) {
 
 }

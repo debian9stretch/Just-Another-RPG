@@ -51,7 +51,7 @@ void Player::openInventory(Inventory& inventory) {
 	std::cout << "\n";
 	if (choice == "use item" || choice == "item") {
 		std::cout << "item?";
-		useItem(Item &item);
+//		useItem(Item &item);
 	}
 }
 

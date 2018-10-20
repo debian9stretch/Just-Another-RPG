@@ -4,6 +4,6 @@ class Item {
 public:
 	Item();
 
-	void returnItemEffect(Item* item);
+	void returnItemEffect(Item& item);
 
 };
