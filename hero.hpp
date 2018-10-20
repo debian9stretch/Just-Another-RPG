@@ -12,7 +12,7 @@ public:
 		//constructors
 
 	Player();
-	Player(unsigned long l, unsigned long h, unsigned long a, unsigned long d, unsigned long m, unsigned long s);
+	Player(unsigned long level, unsigned long health, unsigned long attack, unsigned long defense, unsigned long mana, unsigned long specialPower);
 	
 		//	battle functions
 
@@ -22,7 +22,7 @@ public:
 	void openInventory(Inventory& inventory);
 	void attack(Enemy& enemy);
 	void magicAttack(Enemy& enemy);
-	void takeDamage(unsigned long x);
+	void takeDamage(unsigned long exp);
 
 		//	mutators/setters
 
