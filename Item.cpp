@@ -1,5 +1,4 @@
 #include "Item.hpp"
-#pragma once
 
 #include <iostream>
 #include <string>
