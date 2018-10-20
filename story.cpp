@@ -12,7 +12,7 @@
 
 int main(int argc, char const *argv[]) {
 
-	sf::Window window(sf::VideoMode(600, 840), "Gamey_Boi");
+	/*sf::Window window(sf::VideoMode(600, 840), "Gamey_Boi");
 
 	//set vertical synchronization to true so tearing doesn't happen
 	window.setVerticalSyncEnabled(true);
@@ -25,7 +25,7 @@ int main(int argc, char const *argv[]) {
 			if (event.type == sf::Event::Closed) {
 				window.close();
 			}
-		}
+		}*/
 		//create an object of Player so playing through the game makes a little more sense
 		Player player;
 
@@ -100,16 +100,6 @@ int main(int argc, char const *argv[]) {
 				std::cout << "That's not a direction. Try again.\n";
 			}
 		}
-	}
+	//}
 	return 0;
 }
-
-/*
-
-			What I want is to make an area base level (classes and inheritance?) and use that to determine enemy level.
-			Something like
-
-				enemyLv = areaBase+rand()%areaBase+1
-
-
-*/

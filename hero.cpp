@@ -10,13 +10,13 @@ Enemy enemy;
 
 	//	constructors
 
-Player::Player(unsigned long level, unsigned long health, unsigned long attack, unsigned long defense, unsigned long mana, unsigned long specialPower){
-	playerLv = level;
-	playerHP = health;
-	playerATK = attack;
-	playerDEF = defense;
-	playerMana = mana;
-	playerSP = specialPower;
+Player::Player(unsigned long l, unsigned long h, unsigned long a, unsigned long d, unsigned long m, unsigned long s){
+	playerLv = l;
+	playerHP = h;
+	playerATK = a;
+	playerDEF = d;
+	playerMana = m;
+	playerSP = s;
 }
 
 Player::Player(){
@@ -103,8 +103,8 @@ unsigned long Player::calcPlayerMP(){
 	return pow(playerLv, 2.2) + 20;
 }
 
-void Player::addXP(unsigned long exp){
-	playerExp+=exp;
+void Player::addXP(unsigned long x){
+	playerExp+=x;
 }
 
 

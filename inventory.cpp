@@ -1,8 +1,7 @@
 #include <iostream>
 #include <vector>
 #include "inventory.hpp"
-
-class Item;
+#include "Item.hpp"
 
 Inventory::Inventory() {
 	std::vector<std::unique_ptr<Item>> inventory;
