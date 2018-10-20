@@ -1,6 +1,8 @@
+#include <iostream>
 #include <cstdlib>
 #include <cmath>
 #include <random>
+#include <string>
 #include "hero.hpp"
 #include "enemy.hpp"
 
@@ -8,13 +10,13 @@ Enemy enemy;
 
 	//	constructors
 
-Player::Player(unsigned long level, unsigned long health, unsigned long attack, unsigned long defense, unsigned long mana, unsigned long specialPower){
-	playerLv = level;
-	playerHP = health;
-	playerATK = attack;
-	playerDEF = defense;
-	playerMana = mana;
-	playerSP = specialPower;
+Player::Player(unsigned long l, unsigned long h, unsigned long a, unsigned long d, unsigned long m, unsigned long s){
+	playerLv = l;
+	playerHP = h;
+	playerATK = a;
+	playerDEF = d;
+	playerMana = m;
+	playerSP = s;
 }
 
 Player::Player(){
@@ -34,6 +36,23 @@ Player::Player(){
 
 void Player::takeDamage(unsigned long x){
 	playerHP -= x;
+}
+
+void Player::useItem(Item& item) {
+	//do things
+}
+
+void Player::openInventory(Inventory& inventory) {
+	//clear the entire screen
+	std::cout << "\033[2J\033[1;1H";
+	std::cout << "Welcome to the inventory! Your items, weapons, and armor are stored here.\n What would you like to do? ";
+	std::string choice;
+	std::cin >> choice;
+	std::cout << "\n";
+	if (choice == "use item" || choice == "item") {
+		std::cout << "item?";
+//		useItem(Item &item);
+	}
 }
 
 unsigned long Player::Heal(){
@@ -84,8 +103,8 @@ unsigned long Player::calcPlayerMP(){
 	return pow(playerLv, 2.2) + 20;
 }
 
-void Player::addXP(unsigned long exp){
-	playerExp+=exp;
+void Player::addXP(unsigned long x){
+	playerExp+=x;
 }
 
 

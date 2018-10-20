@@ -12,14 +12,14 @@ int battle(Player& player, Area& area) {
 	//declare a random number for use in deciding enemy count
 	int number_of_enemies = rand() % 5 + 1;
 
-	//make an object of enemy to fight
+	//make multiple enemy objects for the fight
 	std::vector<std::unique_ptr<Enemy>> enemy;
 
 	for (int i = 0; i < number_of_enemies; ++i) {
 		enemy.emplace_back(std::make_unique<Enemy>());
 	}
 	std::cout << "number of enemies to fight: " << enemy.size() << "\n";
-	for (int x = 0; x < number_of_enemies; x++) {
+	for (int x = number_of_enemies; x > 0 ; x--) {
 
 		std::cout << "Area base level is: " << area.getAreaBase() << "\n";
 
@@ -86,6 +86,10 @@ int battle(Player& player, Area& area) {
 						<< "\nHealth: " << enemy[x]->getHealth() << "\nAttack: " << enemy[x]->getATK()
 						<< "\nDefense: " << enemy[x]->getDEF() << "\nAverage damage dealt per hit: " << enemy[x]->Damage();
 					std::cout << "\n";
+					enemy.erase(enemy.getPosition(x));
+
+					//iterate from the number of enemies to 0 and delete each defeated enemy. Shouldn't get an out of bounds error in theory
+
 					break;
 				}
 				if (player.getHP() <= 0) {

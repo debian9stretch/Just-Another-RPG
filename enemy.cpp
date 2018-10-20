@@ -9,6 +9,8 @@ Player player;
 
 Area area;
 
+class Item;
+
 	//constructors
 
 Enemy::Enemy(unsigned long l, unsigned long h, unsigned long a, unsigned long d, unsigned long s)
@@ -43,6 +45,10 @@ unsigned long Enemy::Damage(){
 void Enemy::takeDamage(unsigned long x){
 	currentEnemyHP-=x;
 }
+
+//Item& Enemy::dropItem() {
+//	return item;
+//}
 
 
 	//stats setters
