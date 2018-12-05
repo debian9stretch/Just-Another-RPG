@@ -1,15 +1,13 @@
 #pragma once
-#include "Item.hpp"
-#include <string>
+
+class Item; 
 
 class Potion : public Item {
 public:
 	
 	Potion();
-	Potion(unsigned long healHP);
-	void setHeal(unsigned long healHP);
-	unsigned long getHeal();
+	Potion(int HP, int ATK, int DEF, int MP, int SP);
 
 private:
-	unsigned long heal;
+
 };
