@@ -1,7 +1,7 @@
 #pragma once
 
 class Item; 
-
+/*
 class Potion : public Item {
 public:
 	
@@ -10,4 +10,4 @@ public:
 
 private:
 
-};
+};*/

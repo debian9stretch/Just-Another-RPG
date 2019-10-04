@@ -6,7 +6,6 @@ Area::Area() {
 }
 
 Area::Area(int x) {
-	std::cout << "You've entered a new area! ";
 	areaBase = x;
 }
 

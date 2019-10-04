@@ -1,14 +1,13 @@
 #include <iostream>
 #include "dragon.hpp"
-#include "hero.hpp"
 
-Player player;
+class Player;
 
 Dragon::Dragon() {
 
 }
 
-void Dragon::fireAttack(Player& player) {
+/* void Dragon::fireAttack(Player& player) {
 	FireAttack = ;
 	player.takeDamage(FireAttack);
-}
+}*/

@@ -1,13 +1,30 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
 #include "mainmenu.hpp"
 #include "hero.hpp"
 
 class Player;
 
 MainMenu::MainMenu() {
-	std::cout << "Welcome to the main menu! Would you like to start a new game, load an old one, or exit the game? ";
+
+}
+
+void MainMenu::openMainMenu() {
+	sf::Image image;
+	sf::Texture texture;
+	image.loadFromFile("test.jpg");
+	texture.loadFromImage(image);
+}
+
+void MainMenu::start() {
+
+}
+
+void MainMenu::newGame() {
+
 }
 
 void MainMenu::load(Player& player) {

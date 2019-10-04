@@ -11,7 +11,7 @@
 
 int battle(Player& player, Area& area) {
 
-	Dragon dragon;
+	Enemy enemy;
 	/*
 	//declare a random number for use in deciding enemy count
 	int number_of_enemies = rand() % 5 + 1;
@@ -30,10 +30,10 @@ int battle(Player& player, Area& area) {
 		//update enemy so it'll appear a random level
 		//	uniform_int_distribution didn't *quite* work. Ask Jack later
 		//enemy[x]->update(area);
-		dragon.update(area);
+		enemy.update(area);
 
 		//introduce and start the battle loop enemy[x]->getLv()
-		std::cout << "\nIt seems you've encountered an enemy! Its level is " << dragon.getLv() << " and it has " <<dragon.getHealth()
+		std::cout << "\nIt seems you've encountered an enemy! Its level is " << enemy.getLv() << " and it has " << enemy.getHealth()
 			<< " health!\n Your level is " << player.getLv() << ".\n";
 
 		//have it loop infinitely for obvious reasons
@@ -47,8 +47,8 @@ int battle(Player& player, Area& area) {
 
 				//provide options for battle
 				if (choice == "Attack" || choice == "attack") {
-					player.attack(dragon);
-					std::cout << "You attacked the enemy! " << "The enemy has " << dragon.getHealth() << " health left!\n";
+					player.attack(enemy);
+					std::cout << "You attacked the enemy! " << "The enemy has " << enemy.getHealth() << " health left!\n";
 					break;
 				}
 				else if (choice == "Heal" || choice == "heal") {
@@ -60,8 +60,8 @@ int battle(Player& player, Area& area) {
 					break;
 				}
 				else if (choice == "Magic" || choice == "magic") {
-					player.magicAttack(dragon);
-					std::cout << "Your magic dealt significant damage to the enemy! The enemy has " << dragon.getHealth() << " left!\n";
+					player.magicAttack(enemy);
+					std::cout << "Your magic dealt significant damage to the enemy! The enemy has " << enemy.getHealth() << " left!\n";
 					break;
 				}
 				else if (choice == "run") {
@@ -73,12 +73,12 @@ int battle(Player& player, Area& area) {
 				}
 			}
 
-			if (player.getHP() <= 0 || dragon.getHealth() <= 0) {
-				if (dragon.getHealth() <= 0) {
-					player.addXP(dragon.xpToDrop());
+			if (player.getHP() <= 0 || enemy.getHealth() <= 0) {
+				if (enemy.getHealth() <= 0) {
+					player.addXP(enemy.xpToDrop());
 					player.update();
 					std::cout << "You have slain the enemy! Congratulations!\n";
-					std::cout << "You have gained " << dragon.xpToDrop() << " experience!\n";
+					std::cout << "You have gained " << enemy.xpToDrop() << " experience!\n";
 					std::cout << "You are now level " << player.getLv() << "\n";
 
 
@@ -87,9 +87,9 @@ int battle(Player& player, Area& area) {
 						<< "\nAverage damage dealt per hit: " << player.Damage();
 					std::cout << "\n";
 
-					std::cout << "Your enemy's stats are as follows. \nLevel: " << dragon.getLv()
-						<< "\nHealth: " << dragon.getHealth() << "\nAttack: " << dragon.getATK()
-						<< "\nDefense: " << dragon.getDEF() << "\nAverage damage dealt per hit: " << dragon.Damage();
+					std::cout << "Your enemy's stats are as follows. \nLevel: " << enemy.getLv()
+						<< "\nHealth: " << enemy.getHealth() << "\nAttack: " << enemy.getATK()
+						<< "\nDefense: " << enemy.getDEF() << "\nAverage damage dealt per hit: " << enemy.Damage();
 					std::cout << "\n";
 
 					//iterate from the number of enemies to 0 and delete each defeated enemy. Shouldn't get an out of bounds error in theory
@@ -101,7 +101,7 @@ int battle(Player& player, Area& area) {
 					break;
 				}
 			}
-			dragon.attack(player);
+			enemy.attack(player);
 			std::cout << "The enemy has attacked you!\n";
 			std::cout << "You have " << player.getHP() << " HP left!\n";
 		}
@@ -117,9 +117,3 @@ int battle(Player& player, Area& area) {
 
 	return 0;
 }
-
-/*
-	Instantiate multiple enemy class objects using:
-	std::vector<T> v(objCount);
-	
-*/

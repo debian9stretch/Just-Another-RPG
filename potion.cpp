@@ -2,6 +2,7 @@
 #include <iostream>
 #include <string>
 
+/*
 Potion::Potion() {
 	heal = 0;
 }
@@ -17,3 +18,4 @@ void Potion::setHeal(unsigned long healHP) {
 unsigned long Potion::getHeal() {
 	return heal;
 }
+*/

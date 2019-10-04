@@ -3,6 +3,8 @@
 #include "inventory.hpp"
 #include "Item.hpp"
 
+Item item;
+
 Inventory::Inventory() {
 	std::vector<std::unique_ptr<Item>> inventory;
 }
@@ -21,9 +23,9 @@ void Inventory::displayItems() {
 
 }
 
-//Item* Inventory::getItem() {
-	//return item;
-//}
+Item* Inventory::getItem() {
+	return &item;
+}
 
 /*
 	Inventory inventory;
