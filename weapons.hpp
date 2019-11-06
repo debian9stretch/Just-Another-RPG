@@ -2,9 +2,9 @@
 
 class Item;
 
-class Weapon : public Item {
+/*class Weapon : public Item {
 public:
 	
 private:
 
-};
+};*/

@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 
 class Item;
 
@@ -11,7 +12,7 @@ public:
 	//every day inventory accessing methods
 	//these of which are setters
 
-	void addItem(std::vector<std::unique_ptr<Item>> inventory, Item& item, int quantity);
+	void addItem(std::unique_ptr<Item> Inventory, Item& item, int quantity);
 	void removeItem(Item& item, int quantity);
 
 	//these of which are getters
