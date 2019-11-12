@@ -3,6 +3,7 @@
 #include <fstream>
 #include <random>
 #include <ctime>
+#include <memory>
 #include "enemy.hpp"
 #include "dragon.hpp"
 #include "hero.hpp"
@@ -12,22 +13,23 @@
 int battle(Player& player, Area& area) {
 
 	Enemy enemy;
-	/*
+
 	//declare a random number for use in deciding enemy count
 	int number_of_enemies = rand() % 5 + 1;
 
 	//make multiple enemy objects for the fight
-	std::vector<std::unique_ptr<Enemy>> enemy;
+	std::vector<std::unique_ptr<Enemy>> Enemy;
 
 	for (int i = 0; i < number_of_enemies; ++i) {
-		enemy.emplace_back(std::make_unique<Enemy>());
-	}*/
-	//std::cout << "number of enemies to fight: " << enemy.size() << "\n";
+		Enemy.emplace_back(std::make_unique<Enemy>());
+	}
+	std::cout << "number of enemies to fight: " << Enemy.size() << "\n";
+	
 	for (int x = 5; x > -1 ; x--) {
 
 		std::cout << "Area base level is: " << area.getAreaBase() << "\n";
 
-		//update enemy so it'll appear a random level
+		//update enemy so it'll appear at a random level
 		//	uniform_int_distribution didn't *quite* work. Ask Jack later
 		//enemy[x]->update(area);
 		enemy.update(area);
@@ -93,7 +95,7 @@ int battle(Player& player, Area& area) {
 					std::cout << "\n";
 
 					//iterate from the number of enemies to 0 and delete each defeated enemy. Shouldn't get an out of bounds error in theory
-					//enemy.erase(enemy.begin() + x);
+					Enemy.erase(Enemy.begin() + x);
 					break;
 				}
 				if (player.getHP() <= 0) {

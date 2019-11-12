@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <SFML/Graphics.hpp>
-#include <exception>
+#include <memory>
 #include "battlesystem.hpp"
 #include "hero.hpp"
 #include "dragon.hpp"
@@ -12,28 +12,13 @@
 
 int main(int argc, char const *argv[]) {
 
-	sf::RenderWindow window(sf::VideoMode(1280, 720), "It works!");
+
+	//Allows for handling game states and shit
+	Player player;
 	MainMenu game;
 
-	while (window.isOpen()) {
-		sf::Sprite sprite;
-		sf::Text text;
-		sf::Event event;
-		while (window.pollEvent(event)) {
-			if (event.type == sf::Event::Closed) {
-				window.close();
-			}
-		}  
-		window.draw(text);
-		window.draw(text);
-		window.display();
-	}
-
-
-	//
-
 	//get user input for whatever the hell they're planning
-	/*std::string choice;
+	std::string choice;
 	while (true) {
 		std::cin >> choice;
 		if (choice == "start") {
@@ -49,14 +34,14 @@ int main(int argc, char const *argv[]) {
 		else {
 			std::cout << "That's not an option. Please enter a valid choice. ";
 		}
-	}*/
+	}
 
-	/*std::cout << "\nWelcome. You wake up in a place you've never seen before, and this land once unbeknownst to you is \nfilled with strange creatures. \nYou look around, and there is a river to your right filled with the most plump looking fish.\nTo your left is a field with a huge open expanse that stretches on for miles, fairies fluttering in \nthe wind while gracing the land and animals with their magic and presence.\nThere also appear to be dangerous animals such as dragons very far off in the distance.\nIn front of you is mountain range with the purest white snow-capped peaks, and you can\nsee all sorts of flying animals in the sky. It truly is a beautiful sight.\nSo, where would you like to go?\n";
+	std::cout << "\nWelcome. You wake up in a place you've never seen before, and this land once unbeknownst to you is \nfilled with strange creatures. \nYou look around, and there is a river to your right filled with the most plump looking fish.\nTo your left is a field with a huge open expanse that stretches on for miles, fairies fluttering in \nthe wind while gracing the land and animals with their magic and presence.\nThere also appear to be dangerous animals such as dragons very far off in the distance.\nIn front of you is mountain range with the purest white snow-capped peaks, and you can\nsee all sorts of flying animals in the sky. It truly is a beautiful sight.\nSo, where would you like to go?\n";
 	while (true) {
 		std::cout << "\nNorth, West, East, or South? ";
-		//std::string direction;
-		//std::cin >> direction;
-		//std::cout << "\n";
+		std::string direction;
+		std::cin >> direction;
+		std::cout << "\n";
 		if (true) {
 			Area area(30);
 			std::cout << "\nYou look to your left towards the massive open expanse,\nand realize it's probably a bad idea in your current\ncondition to go that way right now.\n";
@@ -75,8 +60,8 @@ int main(int argc, char const *argv[]) {
 			if (true) {
 				Area area(10);
 				std::cout << "\nYou enter the forest, and immediately lose yourself in the foliage that's full of beautiful shades of gold, red, and green.\nAfter wandering around for a bit, you head\ninto the abandoned village to try and get an idea of what happened, and get any gear if possible.\nAfter venturing into some small village houses, you find a much larger house that was presumably belonged to the chief of the tribe.\nDo you enter the house or no? ";
-				//std::string choice;
-				//std::cin >> choice;
+				std::string choice;
+				std::cin >> choice;
 				if (true) {
 					battle(player, area);
 				}
@@ -99,7 +84,6 @@ int main(int argc, char const *argv[]) {
 		else {
 			std::cout << "That's not a direction. Try again.\n";
 		}
-	}*/
-	//}
+	}
 	return 0;
 }
